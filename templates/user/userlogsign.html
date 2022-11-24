@@ -1,0 +1,233 @@
+{% extends 'basic.html' %}
+{% block title %}login
+{% endblock title %}
+{% block body %}
+
+<div class="container py-5">
+
+
+    
+    <section>
+        <div class="card w-50 mx-auto">
+            <div class="card-title bg-light ">
+                <div class="container mt-3 mx-auto">
+
+                   
+                    <ul class="nav nav-tabs justify-content-center w-100 " style="width:358px">
+
+                        <li class="nav-item">
+                            <a class="nav-link active " data-toggle="tab" href="#home" style="width:158px">Login</a>
+                        </li>
+
+
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#menu1" style="width:158px">Signup</a>
+                        </li>
+
+                </div>
+            </div>
+
+
+            </ul>
+            <div class="card-body">
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div id="home" class="container tab-pane active">
+                        <p class="text-center text-dark">User login form</p>
+                        <div class="container">
+
+                            <div class="row">
+                                <div class="col-md-12 col-lg-12 col-xlg-12 col-sm-12">
+
+                                    <form action="/user/login"  method="post">
+                                        {%csrf_token%}
+                                        <div class="form-group">
+                                            <label for="username">Username:</label>
+                                            <input type="text" class="form-control " id="username" placeholder="Enter username" name="email">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="pwd">Password:</label>
+                                            <input type="password" class="form-control " id="pwd" placeholder="Enter password" name="pswd">
+                                        </div>
+                                        <div class="form-group form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input " type="checkbox" name="remember">
+                                                Remember me
+                                            </label>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Login</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="menu1" class="container tab-pane fade">
+                        <p class="text-center text-dark">User Signup form</p>
+                        <div class="container">
+
+                            <div class="row">
+                                <div class="col-md-12 col-lg-12 col-xlg-12 col-sm-12">
+
+                                    <form action="/user/signup" method="post">
+                                        {%csrf_token%}
+
+                                        <div class="form-group">
+                                            <label for="username">Username:</label>
+                                            <input type="text" class="form-control " id="userr" placeholder="Username" name="username"  onblur="return validateform()" onKeyUp="return validateform()">
+                                            <span id="use" style="color: red;"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email">Email:</label>
+                                            <input type="email" class="form-control " id="eemail" placeholder="Email" name="email" onblur="return validateform()" onKeyUp="return validateform()" >
+                                            <span id="eml" style="color: red;"></span>
+                                        </div>
+                                    
+                                        <div class="form-group">
+                                            <label for="fname">First Name:</label>
+                                            <input type="text" class="form-control " id="fname" placeholder="firstname" name="first_name" onblur="return validateform()" onKeyUp="return validateform()">
+                                            <span id="fn" style="color: red;"></span>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="fname">Last Name:</label>
+                                            <input type="text" class="form-control " id="lname" placeholder="lastname" name="last_name" onblur="return validateform()" onKeyUp="return validateform()">
+                                            <span id="ln" style="color: red;"></span>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="pwd">Password:</label>
+                                            <input type="password" class="form-control " id="pass" placeholder="Enter password" name="password1" onblur="return validateform()" onKeyUp="return validateform()">
+                                            <span id="pss" style="color: red;"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="pwd">Confirm Password:</label>
+                                            <input type="password" class="form-control " id="password2" placeholder="Confirm password" name="password2">
+                                        </div>
+
+                                        <button type="submit" class="btn btn-primary">Sign Up</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+    </section>
+    
+    </div>
+
+    
+{% endblock body %}
+{% block js %}
+
+
+<script>
+    function validateform()
+     {
+         var a=document.getElementById('userr').value.trim();
+         var b=document.getElementById('eemail').value.trim();
+         var c=document.getElementById('fname').value.trim();
+         var d=document.getElementById('lname').value.trim();
+         var e=document.getElementById('pass').value.trim();
+
+
+
+         var expr = /^[6-9]\d{9}$/;
+         var passpatern=/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
+
+         if(a=="")
+                {
+                    document.getElementById('use').style.display="block";
+                    document.getElementById('use').innerHTML="**Please Enter a Valid Name";
+                    return false;
+                }
+      
+              else{
+                        document.getElementById('use').style.display="none";
+                       
+                    }
+                  if(b=="")
+                { 
+                    document.getElementById('eml').style.display="block";
+                    document.getElementById('eml').innerHTML="**Please Enter Email";
+                    return false;
+                }  
+                if(b.indexOf('@')<=0){
+                    document.getElementById('eml').style.display="block";
+                    document.getElementById('eml').innerHTML="**Invalid  Email Address";
+                    return false;
+                }     
+                if ((b.charAt(b.length-4)!='.') && (b.charAt(b.length-3)!='.')) {
+                    document.getElementById('eml').style.display="block";
+                    document.getElementById('eml').innerHTML="**Invalid  Email Address";
+                    return false;
+                }   
+                else{
+                    document.getElementById('eml').style.display="none";
+                  
+                }
+
+                if(c=="")
+                {
+                    document.getElementById('fn').style.display="block";
+                    document.getElementById('fn').innerHTML="**Please Enter First Name";
+                    return false;
+                }
+                if (/[^a-zA-Z]/.test(c))
+                    {
+                        document.getElementById('fn').style.display="block";
+                        document.getElementById('fn').innerHTML="**Only Alphabets Allowed";
+                        return false;
+                    }
+                    else{
+                        document.getElementById('fn').style.display="none";
+                        
+                    }
+                   
+
+                    if(d=="")
+                {
+                    document.getElementById('ln').style.display="block";
+                    document.getElementById('ln').innerHTML="**Please Enter Last Name";
+                    return false;
+                }
+                if (/[^a-zA-Z]/.test(d))
+                    {
+                        document.getElementById('ln').style.display="block";
+                        document.getElementById('ln').innerHTML="**Only Alphabets Allowed";
+                        return false;
+                    }
+                    else{
+                        document.getElementById('ln').style.display="none";
+                        
+                    }
+                  
+
+                    if(e=="")
+                {
+                    document.getElementById('pss').innerHTML="**please enter Password";
+                    return false;
+                }
+                if (!e.match(passpatern))
+                    {
+                        
+                        document.getElementById('pss').innerHTML="** Please follow password format";
+                        return false;
+                    }
+                    else{
+                    document.getElementById('pss').style.display = "none";
+                   
+                    }
+                    return true;
+     }
+
+
+
+</script>
+
+
+{% endblock js %}

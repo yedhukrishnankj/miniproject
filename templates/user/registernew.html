@@ -1,0 +1,283 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
+
+    <!-- Title Page-->
+    <title>Registration</title>
+
+    <!-- Icons font CSS-->
+    <link href="{% static 'registernew/vendor/mdi-font/css/material-design-iconic-font.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'registernew/vendor/font-awesome-4.7/css/font-awesome.min.css' %}" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="{% static 'https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i' %}" rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link href="{% static 'registernew/vendor/select2/select2.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'registernew/vendor/datepicker/daterangepicker.css' %}" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="{% static 'registernew/css/main.css' %}" rel="stylesheet" media="all">
+</head>
+
+
+
+
+<script>
+    function validateform()
+     {
+         var a=document.getElementById('name').value.trim();
+         var b=document.getElementById('email').value.trim();
+         var c=document.getElementById('state').value.trim();
+         var d=document.getElementById('number').value.trim();
+         var e=document.getElementById('password').value.trim();
+         var f=document.getElementById('confirmpassword').value.trim();
+
+ 
+         var expr = /^[6-9]\d{9}$/;
+         var passpatern=/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
+
+
+               if(a=="")
+                {
+                    document.getElementById('nm').style.display="block";
+                    document.getElementById('nm').innerHTML="**Please Enter First Name";
+                    return false;
+                }
+                if (/[^a-zA-Z]/.test(a))
+                    {
+                        document.getElementById('nm').style.display="block";
+                        document.getElementById('nm').innerHTML="**Only Alphabets Allowed";
+                        return false;
+                    }
+                    else{
+                        document.getElementById('nm').style.display="none";
+                        
+                    }
+
+                if(b=="")
+                { 
+                    document.getElementById('eml').style.display="block";
+                    document.getElementById('eml').innerHTML="**Please Enter Email";
+                    return false;
+                }  
+                if(b.indexOf('@')<=0){
+                    document.getElementById('eml').style.display="block";
+                    document.getElementById('eml').innerHTML="**Invalid  Email Address";
+                    return false;
+                }     
+                if ((b.charAt(b.length-4)!='.') && (b.charAt(b.length-3)!='.')) {
+                    document.getElementById('eml').style.display="block";
+                    document.getElementById('eml').innerHTML="**Invalid  Email Address";
+                    return false;
+                }   
+                else{
+                    document.getElementById('eml').style.display="none";
+                }
+                if(c=="")
+                {
+                    document.getElementById('ste').style.display="block";
+                    document.getElementById('ste').innerHTML="**Please Enter State";
+                    return false;
+                }
+                else{
+                    document.getElementById('ste').style.display="none";
+                    
+                }
+
+                if(d=="")
+                {
+                    document.getElementById('no').style.display = "block";
+
+                    document.getElementById('no').innerHTML="**Please Enter  phone number";
+                    return false;
+                }
+                if(d!="" && expr.test(d)==false){
+                    document.getElementById('no').style.display= "block";
+                    document.getElementById('no').innerHTML ="Invalid Phone number";
+                    return false;
+               }
+                else{
+                    document.getElementById('no').style.display = "none";
+                    }
+
+                if(e=="")
+                {
+                    document.getElementById('pss').innerHTML="**please enter Password";
+                    return false;
+                }
+                if (!e.match(passpatern))
+                    {
+                        
+                        document.getElementById('pss').innerHTML="** Please follow password format";
+                        return false;
+                    }
+                    else{
+                    document.getElementById('pss').style.display = "none";
+                   
+                    }
+                if(f=="")
+                {
+                    document.getElementById('cpss').style.display="block";
+                    document.getElementById('cpss').innerHTML="**please enter Confirm Password";
+                    return false;
+                }
+                if(f!=e)
+                {
+                    document.getElementById('cpss').style.display="block";
+                    document.getElementById('cpss').innerHTML="**Password doesn't match";
+                    return false;
+                }
+                else{
+                        document.getElementById('cpss').style.display="none";
+                        return true;
+                    }
+
+     }
+
+
+</script>
+
+
+
+
+
+
+
+<body>
+    <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-4">
+                <div class="card-body col-12">
+                    <h2 class="title">Registration </h2>
+                    <form method="POST" action="" onsubmit="return vForm()" autocomplete="off">
+
+                        {% csrf_token %}
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Name</label>
+                                    <input class="input--style-4" type="text" name="username" id="name" onblur="return validateform()" onKeyUp="return validateform()">
+                                    <span id="nm" style="color: red;"></span>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Email</label>
+                                    <input class="input--style-4" id="email" type="text" name="email" id="email" onblur="return validateform()" onKeyUp="return validateform()">
+                                    <span id="eml" style="color: red;"></span><br>
+<!--&lt;!&ndash;                                    <div><span id="email_error"></span></div>&ndash;&gt;-->
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">state</label>
+                                    <input class="input--style-4" type="text" name="state" id="state" onblur="return validateform()" onKeyUp="return validateform()">
+                                    <span id="ste" style="color: red;"></span>
+                                </div>
+                            </div>
+                           
+<!--                            <div class="col-2">-->
+<!--                                <div class="input-group">-->
+<!--                                    <label class="label">pincode</label>-->
+<!--                                    <input class="input&#45;&#45;style-4" type="text" name="pincode">-->
+<!--                                </div>-->
+<!--                            </div>-->
+                        </div>
+                        <div class="row row-space">
+                            
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Phone Number</label>
+                                    <input class="input--style-4" type="text" name="phonenumber" maxlength="10" id="number" onblur="return validateform()" onKeyUp="return validateform()">
+                                    <span id="no" style="color: red;"></span>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Password</label>
+                                    <input class="input--style-4" type="password" name="password" id="password" onblur="return validateform()" onKeyUp="return validateform()">
+                                    <span id="pss" style="color: red;"></span>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Confirm Password</label>
+                                    <input class="input--style-4" type="password" name="confirmpassword" id="confirmpassword" onblur="return validateform()" onKeyUp="return validateform()">
+                                    <span id="cpss" style="color: red;"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="row row-space"> -->
+                            <!-- <div class="col-2"> -->
+                                <!-- <div class="input-group">
+                                    <label class="label">Date of Birth</label>
+                                    <div class="input-group-icon">
+                                        <input class="input--style-4 js-datepicker" type="text" name="birthday">
+                                        <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
+                                    </div>
+                                </div> -->
+                            <!-- </div> -->
+                            <!-- <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Gender</label>
+                                    <div class="p-t-10">
+                                        <label class="radio-container m-r-45">Male
+                                            <input type="radio" checked="checked" name="gender">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="radio-container">Female
+                                            <input type="radio" name="gender">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div> -->
+                        <!-- </div> -->
+                       
+                        <!-- <div class="input-group">
+                            <label class="label">Subject</label> -->
+                            <!-- <div class="rs-select2 js-select-simple select--no-search">
+                                <select name="subject">
+                                    <option disabled="disabled" selected="selected">Choose option</option>
+                                    <option>subject 1</option>
+                                    <option>Subject 2</option>
+                                    <option>Subject 3</option>
+                                </select>
+                                <div class="select-dropdown"></div>
+                            </div> -->
+                        <!-- </div> -->
+                        <div class="p-t-15" style="display: flex;">
+<!--                            <input type="submit" class="btn btn&#45;&#45;radius-2 btn&#45;&#45;blue" value="Submit">-->
+                            <button class="btn btn--radius-2 btn--blue" style="flex:1" type="submit">Submit</button>
+                            <a href="{% url 'home' %}" style="flex:3;text-align:end" class="signup-image-link"><div style="color:GREEN;">Home</div></a>
+                        </div>
+                        </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Jquery JS-->
+    <script src="{% static 'registernew/vendor/jquery/jquery.min.js' %}"></script>
+    <!-- Vendor JS-->
+    <script src="{% static 'registernew/vendor/select2/select2.min.js' %}"></script>
+    <script src="{% static 'registernew/vendor/datepicker/moment.min.js' %}"></script>
+    <script src="{% static 'registernew/vendor/datepicker/daterangepicker.js' %}"></script>
+
+    <!-- Main JS-->
+    <script src="{% static 'js/global.js' %}"></script>
+
+</body>
+
+</html>
+<!-- end document-->
