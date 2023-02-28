@@ -1,6 +1,80 @@
 {% extends 'basic.html' %}
-{% block title %}about
+{% block title %}Package
 {% endblock title %}
 {% block body %}
-<h1 class="text-center text-success">About page </h1>
+<style>
+    
+.package-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    margin-left: 10px;
+    margin-right: 1100px;
+    flex-direction: column;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  
+  .package-image {
+    height: 200px;
+    overflow: hidden;
+  }
+  
+  .package-image img {
+    width: 100%;
+  }
+  
+  .package-details {
+    padding: 5px;
+  }
+  
+  .package-details h2 {
+    font-size: 24px;
+    margin: 0;
+  }
+  
+  .package-details p {
+    font-size: 16px;
+    margin: 10px 0;
+  }
+  
+  .package-price {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .btn {
+    background-color: #ff9933;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    display: block;
+    font-size: 18px;
+    margin-top: 10px;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn:hover {
+    background-color: #ffbf00;
+  }
+</style>
+  
+<h1 class="text-center text-dark">About Package </h1>
+<div class="package-card">
+	<div class="package-image">
+		<img src="" alt="Package Image">
+	</div>
+	<div class="package-details">
+		<h2>Idukki</h2>
+		<p>Idukki is renowned for its lush green forests, hills, and valleys, with the majority of the district's land being covered by forest</p>
+		<div class="package-price">Price:1000</div>
+		<a href="#" class="btn">Book Now</a>
+	</div>
+</div>
+
 {% endblock body %}

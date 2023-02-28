@@ -44,6 +44,7 @@ def homepage(request):
     return HttpResponse(response)
 
 
+
 def aboutpage(request):
     return HttpResponse(render(request,'about.html'))
 
