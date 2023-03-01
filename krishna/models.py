@@ -46,3 +46,11 @@ class Reservation(models.Model):
     def __str__(self):
         return self.guest.username
 
+class place(models.Model):
+    package_name=models.CharField(max_length=250)
+    package_place=models.CharField(max_length=250)
+    desc=models.TextField()
+    package_price=models.TextField()
+    def __str__(self):
+        return self.package_name
+    

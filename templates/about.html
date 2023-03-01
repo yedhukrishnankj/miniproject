@@ -11,9 +11,10 @@
     display: flex;
     margin-left: 10px;
     margin-right: 1100px;
-    flex-direction: column;
+    flex-direction:column;
     margin-bottom: 20px;
     overflow: hidden;
+    
   }
   
   .package-image {
@@ -64,17 +65,19 @@
   }
 </style>
   
-<h1 class="text-center text-dark">About Package </h1>
+<h1 class="text-center text-dark">Packages </h1>
+{% for i in result %}
 <div class="package-card">
 	<div class="package-image">
-		<img src="" alt="Package Image">
+		<img src="" alt="Image">
 	</div>
 	<div class="package-details">
-		<h2>Idukki</h2>
-		<p>Idukki is renowned for its lush green forests, hills, and valleys, with the majority of the district's land being covered by forest</p>
-		<div class="package-price">Price:1000</div>
+		<h2>Package Name:{{ i.package_name }}</h2>
+    <h2>Package place:{{ i.package_place }}</h2>
+		<p>Description:{{ i.desc }}</p>
+		<div class="package-price">{{ i.package_price }}</div>
 		<a href="#" class="btn">Book Now</a>
 	</div>
 </div>
-
+{% endfor %}
 {% endblock body %}

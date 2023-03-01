@@ -1,6 +1,6 @@
 from django.shortcuts import render ,redirect
 from django.http import HttpResponse , HttpResponseRedirect
-from .models import Hotels,Rooms,Reservation
+from .models import Hotels,Rooms,Reservation,place
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.models import User
@@ -46,7 +46,8 @@ def homepage(request):
 
 
 def aboutpage(request):
-    return HttpResponse(render(request,'about.html'))
+    obj=place.objects.all()
+    return HttpResponse(render(request, 'about.html', {'result': obj}))
 
 
 def contactpage(request):
