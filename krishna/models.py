@@ -51,6 +51,7 @@ class place(models.Model):
     package_place=models.CharField(max_length=250)
     desc=models.TextField()
     package_price=models.TextField()
+    img=models.ImageField(upload_to='pics',default=1)
     def __str__(self):
         return self.package_name
     

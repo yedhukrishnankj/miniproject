@@ -69,7 +69,7 @@
 {% for i in result %}
 <div class="package-card">
 	<div class="package-image">
-		<img src="" alt="Image">
+		<img src="{{ i.img.url }}"  alt="image" />
 	</div>
 	<div class="package-details">
 		<h2>Package Name:{{ i.package_name }}</h2>
